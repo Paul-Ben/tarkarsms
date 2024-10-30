@@ -43,6 +43,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     Route::put('{user}/pwdreset-user', [ManageUsersController::class, 'userResetPassword'])->name('admin.pwdreset');
     Route::post('store-user', [ManageUsersController::class, 'store'])->name('admin.storeuser');
     Route::delete('{user}/delete-user', [ManageUsersController::class, 'destroy'])->name('admin.deleteuser');
+    Route::get('/search', [StudentController::class, 'searchpage'])->name('search-student');
+    Route::get('/search/class', [StudentController::class, 'searchclassform'])->name('search-class');
+    Route::get('/search/class/result', [StudentController::class, 'searchclassresult'])->name('search-class-result');
 });
 
 // Teacher Routes

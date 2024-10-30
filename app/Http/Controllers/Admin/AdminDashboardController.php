@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
@@ -12,7 +13,8 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $studentCount = Student::count();
+        return view('admin.dashboard', compact('studentCount'));
     }
 
     /**

@@ -1,5 +1,29 @@
 <section>
     <header>
+        <div class="text-right ">
+            @if (Route::is('admin.profile.edit'))
+            <a href="{{ route('admin.dashboard') }}">
+                <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <strong></strong> Back
+                </button>
+            </a>
+            @elseif (Route::is('teacher.profile.edit'))
+            <a href="{{ route('teacher.dashboard') }}">
+                <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <strong></strong> Back
+                </button>
+            </a>
+            @else
+            <a href="{{ route('student.dashboard') }}">
+                <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <strong></strong> Back
+                </button>
+            </a>
+            @endif
+        </div>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
         </h2>

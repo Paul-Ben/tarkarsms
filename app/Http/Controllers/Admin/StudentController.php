@@ -15,13 +15,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $classrooms = Classroom::all();
-        // if ($classrooms->exists()) {
-        //     $students = Student::with('classroom')->paginate(20);
-        //     return view('admin.student.index');
-        // }
         $students = Student::with('classroom')->paginate(20);
-        return view('admin.student.index', compact('students', 'classrooms'));
+        return view('admin.student.index', compact('students'));
     }
 
     /**
@@ -170,5 +165,30 @@ class StudentController extends Controller
         }
         $student->delete();
         return redirect()->route('student.index')->with('success', 'Student deleted successfully!');
+    }
+
+    public function searchpage(Request $request)
+    {
+        $search = $request->input('search');
+        $students = Student::where('std_number', 'like', '%' . $search . '%')
+            ->orWhere('first_name', 'like', '%' . $search . '%')
+            ->orWhere('middle_name', 'like', '%' . $search . '%')
+            ->orWhere('last_name', 'like', '%' . $search . '%')
+            ->paginate(10);
+           
+            return view('admin.student.index', compact('students'));
+       
+    }
+    public function searchclassform()
+    {
+        $classrooms = Classroom::all();
+        return view('admin.student.class_search', compact('classrooms'));
+    }
+    public function searchclassresult(Request $request)
+    {
+        $searchquery = $request->input(['search']);
+        $classrooms = Classroom::all();
+        $students = Student::with('classroom')->where('class_id', $searchquery)->paginate(20);
+        return view('admin.student.class_search_result', compact('students', 'classrooms'));
     }
 }
