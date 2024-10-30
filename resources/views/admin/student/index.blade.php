@@ -29,6 +29,9 @@
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
+                                        S/No
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Reg. Number
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -43,8 +46,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($students as $student)
+                                @forelse ($students as $key => $student)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td class="px-6 py-4">
+                                        {{$key + 1}}
+                                    </td>
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{$student->std_number}}
@@ -68,6 +74,7 @@
                                                 Edit
                                             </a>
                                             <button type="submit"
+                                            onclick="return confirm('Do you accept the decision to delete this record?');"
                                                 class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                                         </form>
                                     </td>
